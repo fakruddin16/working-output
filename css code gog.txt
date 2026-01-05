@@ -1,0 +1,262 @@
+css code
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    margin: 0;
+}
+
+.container {
+    width: 95%;
+    margin: auto;
+}
+
+.tabs button {
+    padding: 10px 20px;
+    border: none;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.tabs .active {
+    background: #4f6ef7;
+    color: white;
+    border-radius: 6px;
+}
+
+.package-type span {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.package-type .active {
+    font-weight: bold;
+    border-bottom: 2px solid #4f6ef7;
+}
+
+.booking-card {
+    display: flex;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.left {
+    width: 70%;
+}
+
+.right {
+    width: 30%;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+input, select {
+    padding: 10px;
+    width: 100%;
+}
+
+.small {
+    padding: 6px 15px;
+}
+
+.small.active {
+    background: #4f6ef7;
+    color: white;
+}
+
+.stars button {
+    padding: 8px;
+}
+.stars .active {
+    background: #4f6ef7;
+    color: white;
+}
+
+.search-btn {
+    background: #4f6ef7;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+}
+
+.flight-strip {
+    background: #1d2d5f;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.flight-strip .total span {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Scroll container */
+.flight-results {
+    max-height: 320px;              /* controls visible height */
+    overflow-y: auto;               /* enables vertical scroll */
+    margin-top: 20px;
+    padding-right: 8px;
+}
+
+/* Custom scrollbar (Chrome, Edge) */
+.flight-results::-webkit-scrollbar {
+    width: 6px;
+}
+
+.flight-results::-webkit-scrollbar-thumb {
+    background-color: #c5c5c5;
+    border-radius: 10px;
+}
+
+.flight-results::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Flight card */
+.flight-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px;
+    margin-bottom: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #fff;
+}
+
+/* Left info */
+.flight-left p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+.flight-left small {
+    color: #666;
+}
+
+/* Right price */
+.flight-right {
+    text-align: right;
+}
+
+.flight-right p {
+    font-size: 13px;
+    color: #666;
+}
+
+.flight-right b {
+    font-size: 16px;
+}
+
+/* Wrapper for two columns */
+.flight-scroll-wrapper {
+    display: flex;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+/* Each column */
+.flight-column {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+/* Column title */
+.flight-column h4 {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Scroll area */
+.flight-results {
+    max-height: 320px;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+/* Scrollbar */
+.flight-results::-webkit-scrollbar {
+    width: 5px;
+}
+
+.flight-results::-webkit-scrollbar-thumb {
+    background: #c2c2c2;
+    border-radius: 10px;
+}
+
+/* Flight card */
+.flight-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+/* Text styling */
+.flight-left small {
+    color: #666;
+    font-size: 12px;
+}
+
+.flight-right {
+    text-align: right;
+}
+
+.flight-right b {
+    font-size: 15px;
+}
+
+.airline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.flight-left p,
+.flight-left small,
+.flight-right p {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #555;
+}
+
+.flight-left i {
+    color: #ff6b00;
+}
+
+.flight-right i {
+    color: #666;
+}
+.airline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.airline img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
