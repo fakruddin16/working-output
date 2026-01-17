@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Holiday Package with Flights</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f6fb;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+    }
+
+    .main {
+      flex: 3;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .price-box {
+      flex: 1;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      height: fit-content;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+    }
+
+    .tabs button {
+      padding: 8px 15px;
+      border: none;
+      background: #e5e8ff;
+      margin-right: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .tabs button.active {
+      background: #4a5cff;
+      color: #fff;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .search-btn {
+      background: #4a5cff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .flight-card {
+      background: #f9f9f9;
+      padding: 15px;
+      margin-top: 15px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .flight-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flight-price {
+      font-weight: bold;
+      font-size: 18px;
+      color: #4a5cff;
+    }
+
+    .price-box h3 {
+      margin-bottom: 10px;
+    }
+
+    .price-box p {
+      display: flex;
+      justify-content: space-between;
+      margin: 8px 0;
+    }
+
+    .total {
+      font-weight: bold;
+      font-size: 18px;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- LEFT SIDE -->
+  <div class="main">
+    <h2>Indian Holidays</h2>
+    <h3>International Holidays</h3>
+
+    <div class="tabs">
+      <button class="active">Package with Flights</button>
+      <button>Package without Flights</button>
+      <button>Package with Bus</button>
+    </div>
+
+    <div class="row">
+      <input type="text" placeholder="Search & Select Package">
+      <input type="date">
+    </div>
+
+    <div class="row">
+      <input type="text" placeholder="From airport">
+      <input type="text" placeholder="To airport">
+      <select>
+        <option>Premium Economy</option>
+        <option>Economy</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <select>
+        <option>2 Adults, 1 Child</option>
+        <option>1 Adult</option>
+      </select>
+      <select>
+        <option>3 Star Hotel</option>
+        <option>4 Star Hotel</option>
+        <option>5 Star Hotel</option>
+      </select>
+      <button class="search-btn" onclick="showFlights()">Search</button>
+    </div>
+
+    <!-- FLIGHTS -->
+    <div id="flights">
+      <div class="flight-card">
+        <div class="flight-info">
+          <strong>Air India Express</strong>
+          Hyderabad → Goa <br>
+          11:30 - 18:55
+        </div>
+        <div class="flight-price">₹12,000</div>
+      </div>
+
+      <div class="flight-card">
+        <div class="flight-info">
+          <strong>Air India Express</strong>
+          Goa → Hyderabad <br>
+          00:50 - 01:55
+        </div>
+        <div class="flight-price">₹13,000</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDE PRICE BOX -->
+  <div class="price-box">
+    <h3>Price Details</h3>
+
+    <p><span>2 Adults</span><span>₹30,000</span></p>
+    <p><span>1 Child</span><span>₹12,000</span></p>
+    <p><span>Supplementary Tours</span><span>₹2,000</span></p>
+    <p><span>GST (5%)</span><span>₹2,400</span></p>
+
+    <p class="total"><span>Total Package</span><span>₹46,400</span></p>
+
+    <p><span>Flight Cost</span><span>₹25,600</span></p>
+
+    <p class="total">
+      <span>Grand Total</span>
+      <span>₹72,000</span>
+    </p>
+  </div>
+
+</div>
+
+<script>
+  function showFlights() {
+    alert("Flights loaded successfully!");
+  }
+</script>
+
+</body>
+</html>
+</body>
+</html>
