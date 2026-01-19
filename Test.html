@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Holiday Package Booking</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Top Tabs -->
+    <div class="tabs">
+        <button class="active">Indian Holidays</button>
+        <button>International Holidays</button>
+    </div>
+
+    <!-- Package Type -->
+    <div class="package-type">
+        <span>Package without Flights</span>
+        <span class="active">Package with Flights</span>
+        <span>Package with Bus</span>
+    </div>
+
+    <!-- Main Booking Card -->
+    <div class="booking-card">
+
+        <div class="left">
+
+            <div class="row">
+                <input type="text" placeholder="Search & Select Package">
+                <input type="date">
+            </div>
+
+            <div class="row">
+                <button class="small active">Round Trip</button>
+                <button class="small">Multicity</button>
+            </div>
+
+            <div class="row">
+                <input type="text" placeholder="From airport">
+                <input type="text" placeholder="To airport">
+                <select>
+                    <option>Premium Economy</option>
+                    <option>Economy</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <select>
+                    <option>2 Adults, 1 Child</option>
+                    <option>1 Adult</option>
+                </select>
+
+                <div class="stars">
+                    <button class="active">3★</button>
+                    <button>4★</button>
+                    <button>5★</button>
+                </div>
+
+                <div class="meals">
+                    <label><input type="checkbox"> Add Lunch</label>
+                    <label><input type="checkbox"> Add Dinner</label>
+                </div>
+
+                <button class="search-btn">Search</button>
+            </div>
+
+        </div>
+
+        <!-- Price Panel -->
+        <div class="right">
+            <h3>Price Details</h3>
+            <p>₹15,000 x 2 Adults <span>₹30,000</span></p>
+            <p>₹12,000 x 1 Child <span>₹12,000</span></p>
+            <p>Supplementary Tours <span>₹2,000</span></p>
+            <hr>
+            <p>Total Cost <span>₹44,000</span></p>
+            <p>GST (5%) <span>₹2,400</span></p>
+            <hr>
+            <h2>₹46,400</h2>
+        </div>
+
+    </div>
+
+    <!-- Flight Strip -->
+    <div class="flight-strip">
+        <div>
+            <strong>Air India Express</strong><br>
+            HYD → GOI | 12 March<br>
+            <b>₹12,000</b>
+        </div>
+        <div>
+            <strong>Air India Express</strong><br>
+            GOI → HYD | 16 March<br>
+            <b>₹13,000</b>
+        </div>
+        <div class="total">
+            Total Round Fare<br>
+            <span>₹25,600</span>
+        </div>
+    </div>
+<div class="flight-scroll-wrapper">
+
+    <div class="flight-column">
+        <h4>Hyderabad (HYD) → Goa (GOI)</h4>
+    <!-- Scrollable Flight Results -->
+<div class="flight-results">
+   <div class="flight-card">
+
+    <div class="flight-left">
+
+        <!-- Airline logo + name side by side -->
+        <div class="airline">
+            <img src="123.jpg" alt="Air India Express">
+            <strong>Air India Express</strong>
+        </div>
+
+        <p>
+            <i class="fa-solid fa-location-dot"></i>
+            HYD → GOI
+        </p>
+
+        <small>
+            <i class="fa-regular fa-clock"></i>
+            12:05 – 13:30 · 01h 25m
+        </small>
+    </div>
+
+    <div class="flight-right">
+        <p>
+            <i class="fa-solid fa-users"></i>
+            3 Pax × ₹4,000
+        </p>
+        <b>₹12,000</b>
+    </div>
+
+</div>
+
+
+   <div class="flight-card">
+
+    <div class="flight-left">
+
+        <!-- Airline logo + name side by side -->
+        <div class="airline">
+            <img src="123.jpg" alt="Air India Express">
+            <strong>Air India Express</strong>
+        </div>
+
+        <p>
+            <i class="fa-solid fa-location-dot"></i>
+            HYD → GOI
+        </p>
+
+        <small>
+            <i class="fa-regular fa-clock"></i>
+            12:05 – 13:30 · 01h 25m
+        </small>
+    </div>
+
+    <div class="flight-right">
+        <p>
+            <i class="fa-solid fa-users"></i>
+            3 Pax × ₹4,000
+        </p>
+        <b>₹12,000</b>
+    </div>
+
+</div>
+
+    <div class="flight-card">
+
+    <div class="flight-left">
+
+        <!-- Airline logo + name side by side -->
+        <div class="airline">
+            <img src="123.jpg" alt="Air India Express">
+            <strong>Air India Express</strong>
+        </div>
+
+        <p>
+            <i class="fa-solid fa-location-dot"></i>
+            HYD → GOI
+        </p>
+
+        <small>
+            <i class="fa-regular fa-clock"></i>
+            12:05 – 13:30 · 01h 25m
+        </small>
+    </div>
+
+    <div class="flight-right">
+        <p>
+            <i class="fa-solid fa-users"></i>
+            3 Pax × ₹4,000
+        </p>
+        <b>₹12,000</b>
+    </div>
+
+</div>
+
+   <div class="flight-card">
+
+    <div class="flight-left">
+
+        <!-- Airline logo + name side by side -->
+        <div class="airline">
+            <img src="123.jpg" alt="Air India Express">
+            <strong>Air India Express</strong>
+        </div>
+
+        <p>
+            <i class="fa-solid fa-location-dot"></i>
+            HYD → GOI
+        </p>
+
+        <small>
+            <i class="fa-regular fa-clock"></i>
+            12:05 – 13:30 · 01h 25m
+        </small>
+    </div>
+
+    <div class="flight-right">
+        <p>
+            <i class="fa-solid fa-users"></i>
+            3 Pax × ₹4,000
+        </p>
+        <b>₹12,000</b>
+    </div>
+
+</div>
+
+   <div class="flight-card">
+
+    <div class="flight-left">
+
+        <!-- Airline logo + name side by side -->
+        <div class="airline">
+            <img src="123.jpg" alt="Air India Express">
+            <strong>Air India Express</strong>
+        </div>
+
+        <p>
+            <i class="fa-solid fa-location-dot"></i>
+            HYD → GOI
+        </p>
+
+        <small>
+            <i class="fa-regular fa-clock"></i>
+            12:05 – 13:30 · 01h 25m
+        </small>
+    </div>
+
+    <div class="flight-right">
+        <p>
+            <i class="fa-solid fa-users"></i>
+            3 Pax × ₹4,000
+        </p>
+        <b>₹12,000</b>
+    </div>
+
+</div>
+
+       <div class="flight-card">
+
+    <div class="flight-left">
+
+        <!-- Airline logo + name side by side -->
+        <div class="airline">
+            <img src="123.jpg" alt="Air India Express">
+            <strong>Air India Express</strong>
+        </div>
+
+        <p>
+            <i class="fa-solid fa-location-dot"></i>
+            HYD → GOI
+        </p>
+
+        <small>
+            <i class="fa-regular fa-clock"></i>
+            12:05 – 13:30 · 01h 25m
+        </small>
+    </div>
+
+    <div class="flight-right">
+        <p>
+            <i class="fa-solid fa-users"></i>
+            3 Pax × ₹4,000
+        </p>
+        <b>₹12,000</b>
+    </div>
+
+</div>
+</div>
+</div>
+
+
+    <div class="flight-column">
+        <h4>Hyderabad (HYD) → Goa (GOI)</h4>
+    <!-- Scrollable Flight Results -->
+<div class="flight-results">
+   <div class="flight-card">
+
+    <div class="flight-left">
+
+        <!-- Airline logo + name side by side -->
+        <div class="airline">
+            <img src="123.jpg" alt="Air India Express">
+            <strong>Air India Express</strong>
+        </div>
+
+        <p>
+            <i class="fa-solid fa-location-dot"></i>
+            HYD → GOI
+        </p>
+
+        <small>
+            <i class="fa-regular fa-clock"></i>
+            12:05 – 13:30 · 01h 25m
+        </small>
+    </div>
+
+    <div class="flight-right">
+        <p>
+            <i class="fa-solid fa-users"></i>
+            3 Pax × ₹4,000
+        </p>
+        <b>₹12,000</b>
+    </div>
+
+</div>
+
+
+   <div class="flight-card">
+
+    <div class="flight-left">
+
+        <!-- Airline logo + name side by side -->
+        <div class="airline">
+            <img src="123.jpg" alt="Air India Express">
+            <strong>Air India Express</strong>
+        </div>
+
+        <p>
+            <i class="fa-solid fa-location-dot"></i>
+            HYD → GOI
+        </p>
+
+        <small>
+            <i class="fa-regular fa-clock"></i>
+            12:05 – 13:30 · 01h 25m
+        </small>
+    </div>
+
+    <div class="flight-right">
+        <p>
+            <i class="fa-solid fa-users"></i>
+            3 Pax × ₹4,000
+        </p>
+        <b>₹12,000</b>
+    </div>
+
+</div>
+
+    <div class="flight-card">
+
+    <div class="flight-left">
+
+        <!-- Airline logo + name side by side -->
+        <div class="airline">
+            <img src="123.jpg" alt="Air India Express">
+            <strong>Air India Express</strong>
+        </div>
+
+        <p>
+            <i class="fa-solid fa-location-dot"></i>
+            HYD → GOI
+        </p>
+
+        <small>
+            <i class="fa-regular fa-clock"></i>
+            12:05 – 13:30 · 01h 25m
+        </small>
+    </div>
+
+    <div class="flight-right">
+        <p>
+            <i class="fa-solid fa-users"></i>
+            3 Pax × ₹4,000
+        </p>
+        <b>₹12,000</b>
+    </div>
+
+</div>
+
+   <div class="flight-card">
+
+    <div class="flight-left">
+
+        <!-- Airline logo + name side by side -->
+        <div class="airline">
+            <img src="123.jpg" alt="Air India Express">
+            <strong>Air India Express</strong>
+        </div>
+
+        <p>
+            <i class="fa-solid fa-location-dot"></i>
+            HYD → GOI
+        </p>
+
+        <small>
+            <i class="fa-regular fa-clock"></i>
+            12:05 – 13:30 · 01h 25m
+        </small>
+    </div>
+
+    <div class="flight-right">
+        <p>
+            <i class="fa-solid fa-users"></i>
+            3 Pax × ₹4,000
+        </p>
+        <b>₹12,000</b>
+    </div>
+
+</div>
+
+   <div class="flight-card">
+
+    <div class="flight-left">
+
+        <!-- Airline logo + name side by side -->
+        <div class="airline">
+            <img src="123.jpg" alt="Air India Express">
+            <strong>Air India Express</strong>
+        </div>
+
+        <p>
+            <i class="fa-solid fa-location-dot"></i>
+            HYD → GOI
+        </p>
+
+        <small>
+            <i class="fa-regular fa-clock"></i>
+            12:05 – 13:30 · 01h 25m
+        </small>
+    </div>
+
+    <div class="flight-right">
+        <p>
+            <i class="fa-solid fa-users"></i>
+            3 Pax × ₹4,000
+        </p>
+        <b>₹12,000</b>
+    </div>
+
+</div>
+
+       <div class="flight-card">
+
+    <div class="flight-left">
+
+        <!-- Airline logo + name side by side -->
+        <div class="airline">
+            <img src="123.jpg" alt="Air India Express">
+            <strong>Air India Express</strong>
+        </div>
+
+        <p>
+            <i class="fa-solid fa-location-dot"></i>
+            HYD → GOI
+        </p>
+
+        <small>
+            <i class="fa-regular fa-clock"></i>
+            12:05 – 13:30 · 01h 25m
+        </small>
+    </div>
+
+    <div class="flight-right">
+        <p>
+            <i class="fa-solid fa-users"></i>
+            3 Pax × ₹4,000
+        </p>
+        <b>₹12,000</b>
+    </div>
+
+</div>
+</div>
+</div>
+
+
+</div>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>

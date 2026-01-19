@@ -2,500 +2,1176 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Holiday Package Booking</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Holiday Booking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 24px;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .header-tabs {
+            display: flex;
+            gap: 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .header-tab {
+            padding: 10px 16px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            color: #666;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .header-tab.active {
+            background-color: #4f46e5;
+            color: white;
+        }
+
+        .header-tab:hover {
+            background-color: #f0f0f0;
+        }
+
+        .header-tab.active:hover {
+            background-color: #4338ca;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 32px 16px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 300px;
+            gap: 24px;
+        }
+
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            .price-sidebar {
+                grid-column: 1;
+            }
+        }
+
+        /* Search Form */
+        .search-form {
+            background: white;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            grid-column: 1 / 4;
+        }
+
+        @media (max-width: 1024px) {
+            .search-form {
+                grid-column: 1;
+            }
+        }
+
+        .package-tabs {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 12px;
+        }
+
+        .package-tab {
+            padding: 8px 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .package-tab.active {
+            color: #333;
+            border-bottom: 3px solid #333;
+            margin-bottom: -14px;
+            padding-bottom: 11px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .trip-type-buttons,
+        .hotel-rating-buttons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .trip-btn,
+        .hotel-btn {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .trip-btn.active,
+        .hotel-btn.active {
+            background-color: #4f46e5;
+            color: white;
+            border-color: #4f46e5;
+        }
+
+        .trip-btn:hover,
+        .hotel-btn:hover {
+            border-color: #4f46e5;
+        }
+
+        .meal-options {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            align-items: center;
+        }
+
+        .meal-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .meal-toggle input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #4f46e5;
+        }
+
+        .meal-toggle label {
+            cursor: pointer;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .search-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 16px;
+        }
+
+        .search-btn:hover {
+            background-color: #4338ca;
+        }
+
+        /* Flight Banner */
+        .flight-banner {
+            background: linear-gradient(135deg, #1e293b 0%, #1e40af 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            display: none;
+        }
+
+        .flight-banner.active {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .flight-banner-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flight-banner-label {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .flight-banner-value {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .flight-banner-price {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        .flight-banner-total {
+            text-align: right;
+        }
+
+        .flight-banner-total .flight-banner-value {
+            font-size: 32px;
+        }
+
+        /* Flight Results */
+        .flight-results {
+            display: none;
+            grid-column: 1 / 4;
+        }
+
+        .flight-results.active {
+            display: block;
+        }
+
+        .flight-section {
+            margin-bottom: 32px;
+        }
+
+        .flight-section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .flights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 16px;
+        }
+
+        .flight-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .flight-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: #4f46e5;
+        }
+
+        .flight-card.selected {
+            border: 2px solid #4f46e5;
+            background-color: #f0f4ff;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+        }
+
+        .flight-card-header {
+            padding: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .flight-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #4f46e5;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .flight-airline-info {
+            flex: 1;
+        }
+
+        .flight-airline {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .flight-number {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .flight-price {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .flight-price-amount {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .flight-stops {
+            font-size: 11px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .flight-card-body {
+            padding: 16px;
+        }
+
+        .flight-times {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .flight-time {
+            text-align: center;
+            flex: 1;
+        }
+
+        .flight-time-main {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .flight-time-city {
+            font-size: 11px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .flight-duration-arrow {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #999;
+        }
+
+        .flight-duration-arrow .line {
+            flex: 1;
+            height: 1px;
+            background-color: #ddd;
+        }
+
+        .flight-details-icons {
+            display: flex;
+            gap: 12px;
+            font-size: 12px;
+            color: #666;
+            padding-top: 12px;
+            border-top: 1px solid #f0f0f0;
+            flex-wrap: wrap;
+        }
+
+        .detail-icon {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+
+        .flight-card-footer {
+            padding: 12px 16px;
+            background-color: #fafafa;
+            text-align: center;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .more-details-btn {
+            background: none;
+            border: none;
+            color: #4f46e5;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .more-details-btn:hover {
+            color: #3730a3;
+        }
+
+        .flight-details {
+            display: none;
+            padding: 16px;
+            background-color: #fafafa;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .flight-details.expanded {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+        }
+
+        .detail-row {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .detail-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .detail-value.refundable-yes {
+            color: #16a34a;
+        }
+
+        .detail-value.refundable-no {
+            color: #dc2626;
+        }
+
+        .select-flight-btn {
+            grid-column: 1 / -1;
+            padding: 10px 16px;
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .select-flight-btn:hover {
+            background-color: #4338ca;
+        }
+
+        /* Price Sidebar */
+        .price-sidebar {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .price-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .price-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .price-amount {
+            font-size: 20px;
+            font-weight: 700;
+            color: #16a34a;
+        }
+
+        .show-profit-btn {
+            background: none;
+            border: none;
+            color: #4f46e5;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .show-profit-btn:hover {
+            color: #3730a3;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 13px;
+        }
+
+        .price-label {
+            color: #666;
+        }
+
+        .price-value {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .price-total {
+            background-color: #f9fafb;
+            padding: 12px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            margin: 16px 0;
+            font-weight: 700;
+        }
+
+        .price-total.highlight {
+            background-color: #fef3c7;
+            border: 1px solid #fcd34d;
+        }
+
+        .book-now-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #16a34a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            margin-top: 16px;
+        }
+
+        .book-now-btn:hover {
+            background-color: #15803d;
+        }
+
+        .profit-section {
+            display: none;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .profit-section.visible {
+            display: block;
+        }
+
+        .profit-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .profit-value {
+            color: #16a34a;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
-
-<div class="container">
-
-    <!-- Top Tabs -->
-    <div class="tabs">
-        <button class="active">Indian Holidays</button>
-        <button>International Holidays</button>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-tabs">
+            <button class="header-tab active" onclick="setHolidayType('indian')">Indian Holidays</button>
+            <button class="header-tab" onclick="setHolidayType('international')">International Holidays</button>
+        </div>
     </div>
 
-    <!-- Package Type -->
-    <div class="package-type">
-        <span>Package without Flights</span>
-        <span class="active">Package with Flights</span>
-        <span>Package with Bus</span>
-    </div>
-
-    <!-- Main Booking Card -->
-    <div class="booking-card">
-
-        <div class="left">
-
-            <div class="row">
-                <input type="text" placeholder="Search & Select Package">
-                <input type="date">
-            </div>
-
-            <div class="row">
-                <button class="small active">Round Trip</button>
-                <button class="small">Multicity</button>
-            </div>
-
-            <div class="row">
-                <input type="text" placeholder="From airport">
-                <input type="text" placeholder="To airport">
-                <select>
-                    <option>Premium Economy</option>
-                    <option>Economy</option>
-                </select>
-            </div>
-
-            <div class="row">
-                <select>
-                    <option>2 Adults, 1 Child</option>
-                    <option>1 Adult</option>
-                </select>
-
-                <div class="stars">
-                    <button class="active">3★</button>
-                    <button>4★</button>
-                    <button>5★</button>
+    <!-- Main Container -->
+    <div class="container">
+        <div class="main-grid">
+            <!-- Search Form -->
+            <div class="search-form">
+                <div class="package-tabs">
+                    <button class="package-tab active" onclick="setPackageType('with-flights')">Package with Flights</button>
+                    <button class="package-tab" onclick="setPackageType('without-flights')">Package without Flights</button>
+                    <button class="package-tab" onclick="setPackageType('with-bus')">Package with Bus</button>
                 </div>
 
-                <div class="meals">
-                    <label><input type="checkbox"> Add Lunch</label>
-                    <label><input type="checkbox"> Add Dinner</label>
+                <div class="trip-type-buttons">
+                    <button class="trip-btn active" onclick="setTripType('round')">Round trip</button>
+                    <button class="trip-btn" onclick="setTripType('oneway')">Multicity</button>
                 </div>
 
-                <button class="search-btn">Search</button>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>From airport</label>
+                        <input type="text" placeholder="Enter city, airport" value="Hyderabad">
+                    </div>
+                    <div class="form-group">
+                        <label>Trip start date</label>
+                        <input type="date" value="2025-03-12">
+                    </div>
+                    <div class="form-group">
+                        <label>To airport</label>
+                        <input type="text" placeholder="Enter city, airport" value="Goa">
+                    </div>
+                    <div class="form-group">
+                        <label>Return date</label>
+                        <input type="date" value="2025-03-16">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Class</label>
+                        <select>
+                            <option>Premium Economy</option>
+                            <option>Economy</option>
+                            <option>Business</option>
+                            <option>First Class</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>No. of Passengers</label>
+                        <select>
+                            <option>2 Adults, 2 Children, 1 Infant</option>
+                            <option>1 Adult</option>
+                            <option>2 Adults</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Hotel Standard</label>
+                    <div class="hotel-rating-buttons">
+                        <button class="hotel-btn active" onclick="setHotelRating('3')">3⭐</button>
+                        <button class="hotel-btn" onclick="setHotelRating('4')">4⭐</button>
+                        <button class="hotel-btn" onclick="setHotelRating('5')">5⭐</button>
+                    </div>
+                </div>
+
+                <div class="meal-options">
+                    <label style="font-weight: 600; color: #333; margin: 0;">Meals</label>
+                    <div class="meal-toggle">
+                        <input type="checkbox" id="lunch" onchange="updateMeals()">
+                        <label for="lunch">Add Lunch</label>
+                    </div>
+                    <div class="meal-toggle">
+                        <input type="checkbox" id="dinner" onchange="updateMeals()">
+                        <label for="dinner">Add Dinner</label>
+                    </div>
+                </div>
+
+                <button class="search-btn" onclick="handleSearch()">Search</button>
             </div>
 
+            <!-- Flight Banner -->
+            <div class="flight-banner" id="flightBanner">
+                <div class="flight-banner-item">
+                    <div class="flight-banner-label">Outbound Flight</div>
+                    <div class="flight-banner-value">
+                        <span id="bannerOutDep">--</span>
+                        <span style="margin: 0 8px;">→</span>
+                        <span id="bannerOutArr">--</span>
+                    </div>
+                    <div class="flight-banner-price">₹<span id="bannerOutPrice">0</span></div>
+                </div>
+                <div class="flight-banner-item">
+                    <div class="flight-banner-label">Return Flight</div>
+                    <div class="flight-banner-value">
+                        <span id="bannerRetDep">--</span>
+                        <span style="margin: 0 8px;">→</span>
+                        <span id="bannerRetArr">--</span>
+                    </div>
+                    <div class="flight-banner-price">₹<span id="bannerRetPrice">0</span></div>
+                </div>
+                <div class="flight-banner-item flight-banner-total">
+                    <div class="flight-banner-label">Total Round fare</div>
+                    <div class="flight-banner-value">₹<span id="bannerTotal">0</span></div>
+                    <div class="flight-banner-price">for all pax</div>
+                </div>
+            </div>
+
+            <!-- Flight Results -->
+            <div class="flight-results" id="flightResults">
+                <!-- Outbound Flights -->
+                <div class="flight-section">
+                    <div class="flight-section-title">Hyderabad(HYD) to Goa(GOI)</div>
+                    <div class="flights-grid" id="outboundFlights"></div>
+                </div>
+
+                <!-- Return Flights -->
+                <div class="flight-section">
+                    <div class="flight-section-title">Goa(GOI) to Hyderabad(HYD)</div>
+                    <div class="flights-grid" id="returnFlights"></div>
+                </div>
+            </div>
+
+            <!-- Price Sidebar -->
+            <div class="price-sidebar">
+                <div class="price-header">
+                    <div>
+                        <div class="price-title">Price Details</div>
+                    </div>
+                    <div>
+                        <div class="price-amount">₹<span id="totalPrice">5,000</span></div>
+                    </div>
+                </div>
+
+                <button class="show-profit-btn" onclick="toggleProfit()">Show my profit</button>
+
+                <div class="price-row">
+                    <span class="price-label">₹15,000 × 2 adults</span>
+                    <span class="price-value">₹30,000</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-label">₹12,000 × 1 child</span>
+                    <span class="price-value">₹12,000</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-label">Supplementary tours</span>
+                    <span class="price-value">₹2,000</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-label">Total cost for all</span>
+                    <span class="price-value">₹44,000</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-label">GST (5%)</span>
+                    <span class="price-value">₹2,400</span>
+                </div>
+
+                <div class="price-total highlight">
+                    <span>Total Package Incl. GST</span>
+                    <span>₹46,400</span>
+                </div>
+
+                <div class="price-row">
+                    <span class="price-label">Flight cost</span>
+                    <span class="price-value">₹25,600</span>
+                </div>
+
+                <div class="price-total highlight">
+                    <span>Total Package Cost Incl. Flights & GST</span>
+                    <span>₹72,000</span>
+                </div>
+
+                <div class="profit-section" id="profitSection">
+                    <div class="profit-row">
+                        <span>Your Profit (Mark-up)</span>
+                        <span class="profit-value">₹8,000</span>
+                    </div>
+                    <div class="profit-row">
+                        <span>Profit Percentage</span>
+                        <span class="profit-value">12.5%</span>
+                    </div>
+                </div>
+
+                <button class="book-now-btn" onclick="handleBooking()">Book Now</button>
+            </div>
         </div>
-
-        <!-- Price Panel -->
-        <div class="right">
-            <h3>Price Details</h3>
-            <p>₹15,000 x 2 Adults <span>₹30,000</span></p>
-            <p>₹12,000 x 1 Child <span>₹12,000</span></p>
-            <p>Supplementary Tours <span>₹2,000</span></p>
-            <hr>
-            <p>Total Cost <span>₹44,000</span></p>
-            <p>GST (5%) <span>₹2,400</span></p>
-            <hr>
-            <h2>₹46,400</h2>
-        </div>
-
     </div>
 
-    <!-- Flight Strip -->
-    <div class="flight-strip">
-        <div>
-            <strong>Air India Express</strong><br>
-            HYD → GOI | 12 March<br>
-            <b>₹12,000</b>
-        </div>
-        <div>
-            <strong>Air India Express</strong><br>
-            GOI → HYD | 16 March<br>
-            <b>₹13,000</b>
-        </div>
-        <div class="total">
-            Total Round Fare<br>
-            <span>₹25,600</span>
-        </div>
-    </div>
-<div class="flight-scroll-wrapper">
-
-    <div class="flight-column">
-        <h4>Hyderabad (HYD) → Goa (GOI)</h4>
-    <!-- Scrollable Flight Results -->
-<div class="flight-results">
-   <div class="flight-card">
-
-    <div class="flight-left">
-
-        <!-- Airline logo + name side by side -->
-        <div class="airline">
-            <img src="123.jpg" alt="Air India Express">
-            <strong>Air India Express</strong>
-        </div>
-
-        <p>
-            <i class="fa-solid fa-location-dot"></i>
-            HYD → GOI
-        </p>
-
-        <small>
-            <i class="fa-regular fa-clock"></i>
-            12:05 – 13:30 · 01h 25m
-        </small>
-    </div>
-
-    <div class="flight-right">
-        <p>
-            <i class="fa-solid fa-users"></i>
-            3 Pax × ₹4,000
-        </p>
-        <b>₹12,000</b>
-    </div>
-
-</div>
-
-
-   <div class="flight-card">
-
-    <div class="flight-left">
-
-        <!-- Airline logo + name side by side -->
-        <div class="airline">
-            <img src="123.jpg" alt="Air India Express">
-            <strong>Air India Express</strong>
-        </div>
-
-        <p>
-            <i class="fa-solid fa-location-dot"></i>
-            HYD → GOI
-        </p>
-
-        <small>
-            <i class="fa-regular fa-clock"></i>
-            12:05 – 13:30 · 01h 25m
-        </small>
-    </div>
-
-    <div class="flight-right">
-        <p>
-            <i class="fa-solid fa-users"></i>
-            3 Pax × ₹4,000
-        </p>
-        <b>₹12,000</b>
-    </div>
-
-</div>
-
-    <div class="flight-card">
-
-    <div class="flight-left">
-
-        <!-- Airline logo + name side by side -->
-        <div class="airline">
-            <img src="123.jpg" alt="Air India Express">
-            <strong>Air India Express</strong>
-        </div>
-
-        <p>
-            <i class="fa-solid fa-location-dot"></i>
-            HYD → GOI
-        </p>
-
-        <small>
-            <i class="fa-regular fa-clock"></i>
-            12:05 – 13:30 · 01h 25m
-        </small>
-    </div>
-
-    <div class="flight-right">
-        <p>
-            <i class="fa-solid fa-users"></i>
-            3 Pax × ₹4,000
-        </p>
-        <b>₹12,000</b>
-    </div>
-
-</div>
-
-   <div class="flight-card">
-
-    <div class="flight-left">
-
-        <!-- Airline logo + name side by side -->
-        <div class="airline">
-            <img src="123.jpg" alt="Air India Express">
-            <strong>Air India Express</strong>
-        </div>
-
-        <p>
-            <i class="fa-solid fa-location-dot"></i>
-            HYD → GOI
-        </p>
-
-        <small>
-            <i class="fa-regular fa-clock"></i>
-            12:05 – 13:30 · 01h 25m
-        </small>
-    </div>
-
-    <div class="flight-right">
-        <p>
-            <i class="fa-solid fa-users"></i>
-            3 Pax × ₹4,000
-        </p>
-        <b>₹12,000</b>
-    </div>
-
-</div>
-
-   <div class="flight-card">
-
-    <div class="flight-left">
-
-        <!-- Airline logo + name side by side -->
-        <div class="airline">
-            <img src="123.jpg" alt="Air India Express">
-            <strong>Air India Express</strong>
-        </div>
-
-        <p>
-            <i class="fa-solid fa-location-dot"></i>
-            HYD → GOI
-        </p>
-
-        <small>
-            <i class="fa-regular fa-clock"></i>
-            12:05 – 13:30 · 01h 25m
-        </small>
-    </div>
-
-    <div class="flight-right">
-        <p>
-            <i class="fa-solid fa-users"></i>
-            3 Pax × ₹4,000
-        </p>
-        <b>₹12,000</b>
-    </div>
-
-</div>
-
-       <div class="flight-card">
-
-    <div class="flight-left">
-
-        <!-- Airline logo + name side by side -->
-        <div class="airline">
-            <img src="123.jpg" alt="Air India Express">
-            <strong>Air India Express</strong>
-        </div>
-
-        <p>
-            <i class="fa-solid fa-location-dot"></i>
-            HYD → GOI
-        </p>
-
-        <small>
-            <i class="fa-regular fa-clock"></i>
-            12:05 – 13:30 · 01h 25m
-        </small>
-    </div>
-
-    <div class="flight-right">
-        <p>
-            <i class="fa-solid fa-users"></i>
-            3 Pax × ₹4,000
-        </p>
-        <b>₹12,000</b>
-    </div>
-
-</div>
-</div>
-</div>
-
-
-    <div class="flight-column">
-        <h4>Hyderabad (HYD) → Goa (GOI)</h4>
-    <!-- Scrollable Flight Results -->
-<div class="flight-results">
-   <div class="flight-card">
-
-    <div class="flight-left">
-
-        <!-- Airline logo + name side by side -->
-        <div class="airline">
-            <img src="123.jpg" alt="Air India Express">
-            <strong>Air India Express</strong>
-        </div>
-
-        <p>
-            <i class="fa-solid fa-location-dot"></i>
-            HYD → GOI
-        </p>
-
-        <small>
-            <i class="fa-regular fa-clock"></i>
-            12:05 – 13:30 · 01h 25m
-        </small>
-    </div>
-
-    <div class="flight-right">
-        <p>
-            <i class="fa-solid fa-users"></i>
-            3 Pax × ₹4,000
-        </p>
-        <b>₹12,000</b>
-    </div>
-
-</div>
-
-
-   <div class="flight-card">
-
-    <div class="flight-left">
-
-        <!-- Airline logo + name side by side -->
-        <div class="airline">
-            <img src="123.jpg" alt="Air India Express">
-            <strong>Air India Express</strong>
-        </div>
-
-        <p>
-            <i class="fa-solid fa-location-dot"></i>
-            HYD → GOI
-        </p>
-
-        <small>
-            <i class="fa-regular fa-clock"></i>
-            12:05 – 13:30 · 01h 25m
-        </small>
-    </div>
-
-    <div class="flight-right">
-        <p>
-            <i class="fa-solid fa-users"></i>
-            3 Pax × ₹4,000
-        </p>
-        <b>₹12,000</b>
-    </div>
-
-</div>
-
-    <div class="flight-card">
-
-    <div class="flight-left">
-
-        <!-- Airline logo + name side by side -->
-        <div class="airline">
-            <img src="123.jpg" alt="Air India Express">
-            <strong>Air India Express</strong>
-        </div>
-
-        <p>
-            <i class="fa-solid fa-location-dot"></i>
-            HYD → GOI
-        </p>
-
-        <small>
-            <i class="fa-regular fa-clock"></i>
-            12:05 – 13:30 · 01h 25m
-        </small>
-    </div>
-
-    <div class="flight-right">
-        <p>
-            <i class="fa-solid fa-users"></i>
-            3 Pax × ₹4,000
-        </p>
-        <b>₹12,000</b>
-    </div>
-
-</div>
-
-   <div class="flight-card">
-
-    <div class="flight-left">
-
-        <!-- Airline logo + name side by side -->
-        <div class="airline">
-            <img src="123.jpg" alt="Air India Express">
-            <strong>Air India Express</strong>
-        </div>
-
-        <p>
-            <i class="fa-solid fa-location-dot"></i>
-            HYD → GOI
-        </p>
-
-        <small>
-            <i class="fa-regular fa-clock"></i>
-            12:05 – 13:30 · 01h 25m
-        </small>
-    </div>
-
-    <div class="flight-right">
-        <p>
-            <i class="fa-solid fa-users"></i>
-            3 Pax × ₹4,000
-        </p>
-        <b>₹12,000</b>
-    </div>
-
-</div>
-
-   <div class="flight-card">
-
-    <div class="flight-left">
-
-        <!-- Airline logo + name side by side -->
-        <div class="airline">
-            <img src="123.jpg" alt="Air India Express">
-            <strong>Air India Express</strong>
-        </div>
-
-        <p>
-            <i class="fa-solid fa-location-dot"></i>
-            HYD → GOI
-        </p>
-
-        <small>
-            <i class="fa-regular fa-clock"></i>
-            12:05 – 13:30 · 01h 25m
-        </small>
-    </div>
-
-    <div class="flight-right">
-        <p>
-            <i class="fa-solid fa-users"></i>
-            3 Pax × ₹4,000
-        </p>
-        <b>₹12,000</b>
-    </div>
-
-</div>
-
-       <div class="flight-card">
-
-    <div class="flight-left">
-
-        <!-- Airline logo + name side by side -->
-        <div class="airline">
-            <img src="123.jpg" alt="Air India Express">
-            <strong>Air India Express</strong>
-        </div>
-
-        <p>
-            <i class="fa-solid fa-location-dot"></i>
-            HYD → GOI
-        </p>
-
-        <small>
-            <i class="fa-regular fa-clock"></i>
-            12:05 – 13:30 · 01h 25m
-        </small>
-    </div>
-
-    <div class="flight-right">
-        <p>
-            <i class="fa-solid fa-users"></i>
-            3 Pax × ₹4,000
-        </p>
-        <b>₹12,000</b>
-    </div>
-
-</div>
-</div>
-</div>
-
-
-</div>
-
-</div>
-<script src="script.js"></script>
+    <script>
+        // State management
+        const state = {
+            holidayType: 'indian',
+            packageType: 'with-flights',
+            tripType: 'round',
+            hotelRating: '3',
+            selectedOutbound: null,
+            selectedReturn: null,
+            hasSearched: false
+        };
+
+        // Flight data
+        const flights = {
+            outbound: [
+                {
+                    id: '1',
+                    airline: 'Air India Express',
+                    number: 'IX 2879 TC',
+                    departure: '12:05',
+                    arrival: '13:30',
+                    from: 'HYD',
+                    to: 'GOI',
+                    price: 12000,
+                    stops: 0,
+                    duration: '1h 25m',
+                    handBaggage: '15 Kgs',
+                    checkInBaggage: '20 Kgs',
+                    refundable: true
+                },
+                {
+                    id: '2',
+                    airline: 'Air India Express',
+                    number: 'IX 2879 TC',
+                    departure: '12:05',
+                    arrival: '13:30',
+                    from: 'HYD',
+                    to: 'GOI',
+                    price: 12000,
+                    stops: 0,
+                    duration: '1h 25m',
+                    handBaggage: '15 Kgs',
+                    checkInBaggage: '20 Kgs',
+                    refundable: false
+                },
+                {
+                    id: '3',
+                    airline: 'Air India Express',
+                    number: 'IX 2879 TC',
+                    departure: '12:05',
+                    arrival: '13:30',
+                    from: 'HYD',
+                    to: 'GOI',
+                    price: 12000,
+                    stops: 0,
+                    duration: '1h 25m',
+                    handBaggage: '15 Kgs',
+                    checkInBaggage: '20 Kgs',
+                    refundable: true
+                },
+                {
+                    id: '4',
+                    airline: 'Air India Express',
+                    number: 'IX 2879 TC',
+                    departure: '12:05',
+                    arrival: '13:30',
+                    from: 'HYD',
+                    to: 'GOI',
+                    price: 12000,
+                    stops: 0,
+                    duration: '1h 25m',
+                    handBaggage: '15 Kgs',
+                    checkInBaggage: '20 Kgs',
+                    refundable: false
+                }
+            ],
+            return: [
+                {
+                    id: '5',
+                    airline: 'Air India Express',
+                    number: 'IX 2879 TC',
+                    departure: '12:05',
+                    arrival: '13:30',
+                    from: 'GOI',
+                    to: 'HYD',
+                    price: 13000,
+                    stops: 0,
+                    duration: '1h 25m',
+                    handBaggage: '15 Kgs',
+                    checkInBaggage: '20 Kgs',
+                    refundable: true
+                },
+                {
+                    id: '6',
+                    airline: 'Air India Express',
+                    number: 'IX 2879 TC',
+                    departure: '12:05',
+                    arrival: '13:30',
+                    from: 'GOI',
+                    to: 'HYD',
+                    price: 13000,
+                    stops: 0,
+                    duration: '1h 25m',
+                    handBaggage: '15 Kgs',
+                    checkInBaggage: '20 Kgs',
+                    refundable: false
+                },
+                {
+                    id: '7',
+                    airline: 'Air India Express',
+                    number: 'IX 2879 TC',
+                    departure: '12:05',
+                    arrival: '13:30',
+                    from: 'GOI',
+                    to: 'HYD',
+                    price: 13000,
+                    stops: 0,
+                    duration: '1h 25m',
+                    handBaggage: '15 Kgs',
+                    checkInBaggage: '20 Kgs',
+                    refundable: true
+                },
+                {
+                    id: '8',
+                    airline: 'Air India Express',
+                    number: 'IX 2879 TC',
+                    departure: '12:05',
+                    arrival: '13:30',
+                    from: 'GOI',
+                    to: 'HYD',
+                    price: 13000,
+                    stops: 0,
+                    duration: '1h 25m',
+                    handBaggage: '15 Kgs',
+                    checkInBaggage: '20 Kgs',
+                    refundable: false
+                }
+            ]
+        };
+
+        // UI Functions
+        function setHolidayType(type) {
+            state.holidayType = type;
+            document.querySelectorAll('.header-tab').forEach((btn, i) => {
+                btn.classList.toggle('active', (type === 'indian' && i === 0) || (type === 'international' && i === 1));
+            });
+        }
+
+        function setPackageType(type) {
+            state.packageType = type;
+            document.querySelectorAll('.package-tab').forEach((btn, i) => {
+                btn.classList.toggle('active', (type === 'with-flights' && i === 0) || (type === 'without-flights' && i === 1) || (type === 'with-bus' && i === 2));
+            });
+        }
+
+        function setTripType(type) {
+            state.tripType = type;
+            document.querySelectorAll('.trip-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (type === 'round' && i === 0) || (type === 'oneway' && i === 1));
+            });
+        }
+
+        function setHotelRating(rating) {
+            state.hotelRating = rating;
+            document.querySelectorAll('.hotel-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (rating === '3' && i === 0) || (rating === '4' && i === 1) || (rating === '5' && i === 2));
+            });
+        }
+
+        function updateMeals() {
+            const lunch = document.getElementById('lunch').checked;
+            const dinner = document.getElementById('dinner').checked;
+            console.log('[v0] Meals updated - Lunch:', lunch, 'Dinner:', dinner);
+        }
+
+        function handleSearch() {
+            state.hasSearched = true;
+            document.getElementById('flightResults').classList.add('active');
+            renderFlights();
+            console.log('[v0] Search clicked');
+        }
+
+        function toggleProfit() {
+            document.getElementById('profitSection').classList.toggle('visible');
+        }
+
+        function handleBooking() {
+            alert('Booking initiated!');
+        }
+
+        function selectFlight(flightId, isReturn) {
+            if (isReturn) {
+                state.selectedReturn = flightId;
+                document.querySelectorAll('#returnFlights .flight-card').forEach(card => {
+                    card.classList.remove('selected');
+                    if (card.dataset.flightId === flightId) {
+                        card.classList.add('selected');
+                    }
+                });
+            } else {
+                state.selectedOutbound = flightId;
+                document.querySelectorAll('#outboundFlights .flight-card').forEach(card => {
+                    card.classList.remove('selected');
+                    if (card.dataset.flightId === flightId) {
+                        card.classList.add('selected');
+                    }
+                });
+            }
+            updateFlightBanner();
+        }
+
+        function toggleFlightDetails(element) {
+            const details = element.closest('.flight-card').querySelector('.flight-details');
+            details.classList.toggle('expanded');
+            const btn = element.closest('.flight-card-footer').querySelector('.more-details-btn');
+            btn.textContent = details.classList.contains('expanded') ? 'Less Details' : 'More Details';
+        }
+
+        function updateFlightBanner() {
+            const outbound = flights.outbound.find(f => f.id === state.selectedOutbound);
+            const returnFlight = flights.return.find(f => f.id === state.selectedReturn);
+
+            const banner = document.getElementById('flightBanner');
+            if (state.selectedOutbound || state.selectedReturn) {
+                banner.classList.add('active');
+
+                if (outbound) {
+                    document.getElementById('bannerOutDep').textContent = outbound.departure;
+                    document.getElementById('bannerOutArr').textContent = outbound.arrival;
+                    document.getElementById('bannerOutPrice').textContent = outbound.price.toLocaleString();
+                }
+
+                if (returnFlight) {
+                    document.getElementById('bannerRetDep').textContent = returnFlight.departure;
+                    document.getElementById('bannerRetArr').textContent = returnFlight.arrival;
+                    document.getElementById('bannerRetPrice').textContent = returnFlight.price.toLocaleString();
+                }
+
+                const total = (outbound ? outbound.price : 0) + (returnFlight ? returnFlight.price : 0);
+                document.getElementById('bannerTotal').textContent = total.toLocaleString();
+            } else {
+                banner.classList.remove('active');
+            }
+        }
+
+        function renderFlights() {
+            const outboundContainer = document.getElementById('outboundFlights');
+            const returnContainer = document.getElementById('returnFlights');
+
+            outboundContainer.innerHTML = flights.outbound.map(flight => createFlightCard(flight, false)).join('');
+            returnContainer.innerHTML = flights.return.map(flight => createFlightCard(flight, true)).join('');
+        }
+
+        function createFlightCard(flight, isReturn) {
+            return `
+                <div class="flight-card" data-flight-id="${flight.id}">
+                    <div class="flight-card-header">
+                        <input type="checkbox" class="flight-checkbox" onchange="selectFlight('${flight.id}', ${isReturn}); this.closest('.flight-card').classList.toggle('selected', this.checked);">
+                        <div class="flight-airline-info">
+                            <div class="flight-airline">${flight.airline}</div>
+                            <div class="flight-number">${flight.number}</div>
+                        </div>
+                        <div class="flight-price">
+                            <div class="flight-price-amount">₹${flight.price.toLocaleString()}</div>
+                            <div class="flight-stops">${flight.stops === 0 ? 'Non-stop' : flight.stops + ' Stop'}</div>
+                        </div>
+                    </div>
+
+                    <div class="flight-card-body">
+                        <div class="flight-times">
+                            <div class="flight-time">
+                                <div class="flight-time-main">${flight.departure}</div>
+                                <div class="flight-time-city">${flight.from}</div>
+                            </div>
+                            <div class="flight-duration-arrow">
+                                <div class="line"></div>
+                                <span>✈</span>
+                                <div class="line"></div>
+                            </div>
+                            <div class="flight-time">
+                                <div class="flight-time-main">${flight.arrival}</div>
+                                <div class="flight-time-city">${flight.to}</div>
+                            </div>
+                        </div>
+
+                        <div class="flight-details-icons">
+                            <div class="detail-icon">🎒 Hand Baggage</div>
+                            <div class="detail-icon">📦 Check-In Baggage</div>
+                            <div class="detail-icon">${flight.refundable ? '✓' : '✗'} Refundable</div>
+                            <div class="detail-icon">📋 Rules</div>
+                        </div>
+                    </div>
+
+                    <div class="flight-details">
+                        <div class="detail-row">
+                            <div class="detail-label">Departure</div>
+                            <div class="detail-value">${flight.departure}</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Arrival</div>
+                            <div class="detail-value">${flight.arrival}</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Duration</div>
+                            <div class="detail-value">${flight.duration}</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Price Per Person</div>
+                            <div class="detail-value">₹${(flight.price / 3).toLocaleString()}</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Hand Baggage</div>
+                            <div class="detail-value">${flight.handBaggage}</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Check-In</div>
+                            <div class="detail-value">${flight.checkInBaggage}</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Refundable</div>
+                            <div class="detail-value ${flight.refundable ? 'refundable-yes' : 'refundable-no'}">
+                                ${flight.refundable ? '✓ Yes' : '✗ No'}
+                            </div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Flight Number</div>
+                            <div class="detail-value">${flight.number}</div>
+                        </div>
+                        <button class="select-flight-btn" onclick="selectFlight('${flight.id}', ${isReturn}); this.closest('.flight-card').querySelector('.flight-checkbox').checked = true; this.closest('.flight-card').classList.add('selected');">Select Flight</button>
+                    </div>
+
+                    <div class="flight-card-footer">
+                        <button class="more-details-btn" onclick="toggleFlightDetails(this)">More Details</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize
+        console.log('[v0] App initialized');
+    </script>
 </body>
 </html>
